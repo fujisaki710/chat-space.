@@ -9,20 +9,20 @@
 
 ## Association
 - belongs_to :user
+- belongs_to :group
 
 
 # usersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|name|strings|null: false|
-|user|strings|unique: true|
+|user_id|integer|null: false|
 |email|strings|unique: true|
 
 ## Association
 - has_many :messages
 - has_many :groups
-- has_many :groups, through: :users
+- has_many :users, through: :groups
 
 
 # membersテーブル
@@ -44,7 +44,7 @@
 |group_name|strings|null: false|
 
 ## Association
-- has_many :users
+- has_many :groups, through: :users
 - has_many :messages
 
 
