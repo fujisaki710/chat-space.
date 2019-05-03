@@ -2,10 +2,10 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|body||text|||
-|image||string|||
-|group_id||integer||null: false|
-|user_id||integer||null: false|
+|body|text||
+|image|string||
+|group_id|integer|null: false|
+|user_id|integer|null: false|
 
 ## Association
 - belongs_to :user
@@ -15,9 +15,9 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|name||strings||null: false|
-|user||strings||unique: true|
-|email||strings||unique: true|
+|name|strings|null: false|
+|user|strings|unique: true|
+|email|strings|unique: true|
 
 ## Association
 - has_many :messages
@@ -40,7 +40,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|group_name||strings||null: false|
+|group_name|strings|null: false|
 
 ## Association
 - has_many :users
