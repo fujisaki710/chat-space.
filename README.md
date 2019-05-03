@@ -2,8 +2,8 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|body||text|
-|image||string|
+|body||text|||
+|image||string|||
 |group_id||integer||null: false|
 |user_id||integer||null: false|
 
