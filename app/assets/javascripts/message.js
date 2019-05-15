@@ -1,6 +1,5 @@
-function buildHTML(message)
-    message.image ? (
-      var html =
+function buildHTML(message){
+var html =
        `<div class="message" data-message-id=${message.id}>
           <div class="upper-message">
             <div class="upper-message__user-name">
@@ -18,6 +17,10 @@ function buildHTML(message)
           <asset_path src=${message.image} >
         </div>`
       return html;
+}      
+    message.image ? (
+        message.image
+      
       ) : ( 
       message.image = null 
       return html;
