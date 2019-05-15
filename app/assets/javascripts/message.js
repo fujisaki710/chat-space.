@@ -19,25 +19,10 @@ function buildHTML(message)
         </div>`
       return html;
       ) : ( 
-      var html =
-       `<div class="message" data-message-id=${message.id}>
-          <div class="upper-message">
-            <div class="upper-message__user-name">
-              ${message.user_name}
-            </div>
-            <div class="upper-message__date">
-              ${message.date}
-            </div>
-          </div>
-          <div class="lower-message">
-            <p class="lower-message__content">
-              ${message.content}
-            </p>
-          </div>
-        </div>`
+      message.image = null 
       return html;
-       ):
-}
+       ) :
+
 
 $('.js-form').on('submit', function(){
     e.preventDefault();
