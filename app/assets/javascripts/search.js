@@ -1,7 +1,7 @@
 $(function() {
-    $(".chat-group-form").on("keyup", function() {
+    $(".chat-group-form").on("keyup", function() {  
       var input = $(".chat-group-form").val();
-
+       
       $.ajax({
         type: 'GET',
         url: '/users/index',
