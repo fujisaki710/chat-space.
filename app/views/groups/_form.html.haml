@@ -28,6 +28,8 @@
       .chat-group-user.clearfix
         %input{ name: "chat_group[user_ids][]", type:"hidden", value: current_user.id}
         %p.chat-group-user__name
+          = current_user.name
+          #add-user-list
 
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
