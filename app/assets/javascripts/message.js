@@ -42,5 +42,6 @@ $('.js-form').on('submit', function(){
         alert('error');
     });
       return false;
-    });                         
+    });
+
 });
