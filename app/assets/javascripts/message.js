@@ -45,48 +45,30 @@ $(function(){
         return false;
       });
 
-    $(function(){
-        setInterval(reloadMessages, 5000);
-      });
-       function reloadMessages () {
-     };
-    var last_message_id = $('.message:last').data('messageId');
-    $.ajax({
-      url: location.href,
-      type: 'get',
-      dataType: 'json',
-      data: {id: last_message_id}
-    })
-    .done(function(messages) {
-      // console.log('success');
-    })
-    .fail(function() {
-      // console.log('error');
-    });
-    // setInterval(reloadMessages, 5000);
+    
+    var reloadMessages = function() {
+      var group_id = $(".left-header__title").data('group_id');
 
-    function buildHTML(message){
-      var messageHTML =  message.content && message.image.url ? '<img src="' + message.image.url + '" class="lower-message__image" >' : "" ;
-      var html =
-            '<div class="message" data-id=' + message.id + '>' +
-                  '<div class="upper-message">' +
-                    '<div class="upper-message__user-name">' +
-                      message.user_name +
-                    '</div>' +
-                    '<div class="upper-message__date">' +
-                      message.created_at +
-                    '</div>' +
-                  '</div>' +
-                  '<div class="lower-message">' +
-                    '<p class="lower-message__content">' +
-                      message.content +
-                    '</p>' +
-                    '<img src="' + message.image.url + '" class="lower-message__image" >' +
-                  '</div>' +
-                '</div>'
-              return html;
-    }
-      function scroll(){
-        $('.message').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
-      }
-});  
+      var last_message_id = $('.message:last').data('messageId');
+        $.ajax({
+          url: '/groups/${group_id}/api/messages',
+          type: 'get',
+          dataType: 'json',
+          data: {id: last_message_id}
+        })
+        .done(function(messages) {
+          messages.forEach(function(message) {
+            var insertHTML = buildHTML(message)
+            $('.message').append(insertHTML)
+            $('.message').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');    
+        })
+
+        .fail(function() {
+          alert('自動更新に失敗しました');
+        }) 
+        setInterval(reloadMessages, 5000);
+          
+          })     
+ }; 
+});
+
