@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+$ (function() {
 
   function buildHTML(message){
     var imageHTML = message.image ? `<asset_path src="${message.image}" >` : "";
@@ -63,13 +63,19 @@ $(document).on('turbolinks:load', function() {
             var html = buildHTML(message) 
               $('.message').append(html)
               $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');  
+              clearInterval(setInterval(reloadMessages, 5000))
          });
         })　  
         .fail(function() {
           alert('自動更新に失敗しました');  
           
         })             
- };     
-     setInterval(reloadMessages, 5000);   
+ };  
+    
+    var url = location.href;
+    var group_id = $(".left-header__title").data('group_id');
+    if(url === `http://localhost:3000/groups/${group_id}/messages`){
+      setInterval(reloadMessages, 5000);
+    }
+    
 });
-
