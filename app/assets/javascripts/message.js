@@ -49,9 +49,7 @@ $(document).on('turbolinks:load', function() {
 
     
     function reloadMessages () {
-      console.log('s')
       var group_id = $(".left-header__title").data('group_id');
-
       var message_id = $('.message:last').data('message_id');
         $.ajax({
           url: `/groups/${group_id}/api/messages`,
@@ -60,10 +58,8 @@ $(document).on('turbolinks:load', function() {
           data: {id: message_id}
         })
         .done(function(messages) {
-          console.log(messages)
           var insertHTML = '';        
           messages.forEach(function(message) { 
-
             var html = buildHTML(message) 
               $('.message').append(html)
               $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');  
@@ -73,9 +69,7 @@ $(document).on('turbolinks:load', function() {
           alert('自動更新に失敗しました');  
           
         })             
- }; 
-     
-     setInterval(reloadMessages, 5000);
-    
+ };     
+     setInterval(reloadMessages, 5000);   
 });
 
