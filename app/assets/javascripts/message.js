@@ -2,7 +2,7 @@ $(function(){
   function buildHTML(message){
     var imageHTML = message.image ? `<asset_path src="${message.image}" >` : "";
     var html =
-        `<div class="message" data-message-id=${message.id}>
+        `<div class="message" data-id=${message.id}>
             <div class="upper-message">
               <div class="upper-message__user-name">
                 ${message.user_name}
@@ -47,29 +47,34 @@ $(function(){
     });
 
     
-    var reloadMessages = function() {
+    function reloadMessages () {
       var group_id = $(".left-header__title").data('group_id');
 
-      var last_message_id = $('.message:last').data('messageId');
+      var message_id = $('.message:last').data('message_id');
         $.ajax({
-          url: '/groups/${group_id}/api/messages',
+          url: `/groups/${group_id}/api/messages`,
           type: 'get',
           dataType: 'json',
-          data: {id: last_message_id}
+          data: {id: message_id}
         })
         .done(function(messages) {
-          messages.forEach(function(message) {
-            var insertHTML = buildHTML(message)
-            $('.message').append(insertHTML)
-            $('.message').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');    
-        })
-　          
-        .fail(function() {
-          alert('自動更新に失敗しました');
-        }) 
-        setInterval(reloadMessages, 5000);
+          var insertHTML = '';
           
-          })     
+          console.log("aaaa")
+        
+          messages.forEach(function(message) { 
+            debugger           
+            var html = buildHTML(message) 
+              console.log("dsasas")
+              $('.message').append(html)
+              $('.message').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');  
+         });
+        })　  
+        .fail(function() {
+          alert('自動更新に失敗しました');  
+          
+        })             
  }; 
+         setInterval(reloadMessages, 5000); 
 });
 
