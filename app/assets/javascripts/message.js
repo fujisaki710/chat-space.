@@ -1,4 +1,5 @@
-$(function(){
+$(document).on('turbolinks:load', function() {
+
   function buildHTML(message){
     var imageHTML = message.image ? `<asset_path src="${message.image}" >` : "";
     var html =
@@ -48,6 +49,7 @@ $(function(){
 
     
     function reloadMessages () {
+      console.log('s')
       var group_id = $(".left-header__title").data('group_id');
 
       var message_id = $('.message:last').data('message_id');
@@ -58,11 +60,13 @@ $(function(){
           data: {id: message_id}
         })
         .done(function(messages) {
+          console.log(messages)
           var insertHTML = '';        
-          messages.forEach(function(message) {            
+          messages.forEach(function(message) { 
+
             var html = buildHTML(message) 
               $('.message').append(html)
-              $('.message').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');  
+              $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');  
          });
         })　  
         .fail(function() {
@@ -70,6 +74,8 @@ $(function(){
           
         })             
  }; 
-         setInterval(reloadMessages, 5000); 
+     
+     setInterval(reloadMessages, 5000);
+    
 });
 
