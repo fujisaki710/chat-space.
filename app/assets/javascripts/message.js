@@ -58,14 +58,9 @@ $(function(){
           data: {id: message_id}
         })
         .done(function(messages) {
-          var insertHTML = '';
-          
-          console.log("aaaa")
-        
-          messages.forEach(function(message) { 
-            debugger           
+          var insertHTML = '';        
+          messages.forEach(function(message) {            
             var html = buildHTML(message) 
-              console.log("dsasas")
               $('.message').append(html)
               $('.message').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');  
          });
