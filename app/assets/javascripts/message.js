@@ -74,7 +74,7 @@ $ (function() {
     
     var url = location.href;
     var group_id = $(".left-header__title").data('group_id');
-    if(url === `http://localhost:3000/groups/${group_id}/messages`){
+    if(url === `http://localhost:3000/groups/${group_id}/messages` || url ===`/groups/${group_id}/messages`){
       setInterval(reloadMessages, 5000);
     }
     
