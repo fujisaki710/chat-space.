@@ -1,4 +1,3 @@
-$(document).on('turbolinks:load', function() {
   $(function(){
     function searchUser(user){
   
@@ -67,4 +66,3 @@ $(document).on('turbolinks:load', function() {
       $(this).parent().remove();
     })
   })
-})
