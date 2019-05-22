@@ -1,5 +1,4 @@
-$(document).on('turbolinks:load', function() {
-  $(function(){
+$(function(){
     function searchUser(user){
   
       var html = `<div class="chat-group-user clearfix">
@@ -67,4 +66,4 @@ $(document).on('turbolinks:load', function() {
       $(this).parent().remove();
     })
   })
-})
+  
