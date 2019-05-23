@@ -1,7 +1,7 @@
 $ (function() {
 
   function buildHTML(message){
-    var imageHTML = message.image ? `<asset_path src="${message.image}" >` : "";
+    var imageHTML = message.image ? `<img src="${message.image}" >` : "";
     var html =
         `<div class="message" data-id=${message.id}>
             <div class="upper-message">
@@ -63,19 +63,20 @@ $ (function() {
             var html = buildHTML(message) 
               $('.message').append(html)
               $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');  
-              clearInterval(setInterval(reloadMessages, 5000))
+              
          });
         })　  
         .fail(function() {
           alert('自動更新に失敗しました');  
           
         })             
- };  
-    
-    var url = location.href;
-    var group_id = $(".left-header__title").data('group_id');
-    if(url === `http://localhost:3000/groups/${group_id}/messages` || url ===`/groups/${group_id}/messages`){
-      setInterval(reloadMessages, 5000);
-    }
-    
+ };
+  $(function(){
+  if (location.pathname.match(/messages/)) {
+    setInterval(reloadMessages,5000);  
+  }  
+  else {
+    clearInterval(reloadMessages);
+  };
+  });        
 });
