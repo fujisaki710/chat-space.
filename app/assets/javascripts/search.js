@@ -22,13 +22,16 @@ $(function(){
         })
       .done(function(users) {
         $('#user-search-result').empty();
-        if (users.length !== 0) {
+        if (users.length !== 0 && input.length !== 0 ) {
           users.forEach(function(user){
             searchUser(user);
             var html = searchUser(user);
             $('#user-search-result').append(html)
-          });
-        };
+          });  
+        }
+        else{
+          $('#user-search-result').append("一致するユーザーはいません")
+        }
         })
         .fail(function() {
         alert('ユーザー検索に失敗しました');
