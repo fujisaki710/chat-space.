@@ -2,26 +2,27 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|body||text|
-|image||string|
-|group_id||integer||null: false|
-|user_id||integer||null: false|
+|body|text||
+|image|string||
+|group_id|integer|null: false|
+|user_id|integer|null: false|
 
 ## Association
 - belongs_to :user
+- belongs_to :group
 
 
 # usersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|name||strings||null: false|
-|user||strings||unique: true|
-|email||strings||unique: true|
+|user_id|integer|null: false|
+|email|strings|unique: true|
 
 ## Association
 - has_many :messages
 - has_many :groups
+- has_many :users, through: :groups
 
 
 # membersテーブル
@@ -40,10 +41,10 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|group_name||strings||null: false|
+|group_name|strings|null: false|
 
 ## Association
-- has_many :users
+- has_many :groups, through: :users
 - has_many :messages
 
 
